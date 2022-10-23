@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UmakLibraryApp</string>
+    <string name="login">Login</string>
+    Login
 </resources>
