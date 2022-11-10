@@ -3,4 +3,13 @@
     <string name="login">Login</string>
     <string name="bookdetails">Book Details</string>
 
+    <string-array name="history_array">
+        <item>Noli Me Tangere </item>
+        <item>Noli Me Tangere </item>
+        <item>Noli Me Tangere </item>
+        <item>Noli Me Tangere </item>
+        <item>Noli Me Tangere </item>
+        <item>Noli Me Tangere </item>
+    </string-array>
+
 </resources>
