@@ -1,20 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".Login" >
 
 
-    <TextView
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        >
+        <ImageView
+            android:id="@+id/open_book"
+            android:layout_width="250dp"
+            android:layout_height="210dp"
+            android:src="@drawable/ic_fi_xnluxl_open_book"
+            android:layout_marginHorizontal="82dp"
+            android:layout_marginTop="50dp"
+            >
+
+        </ImageView>
+
+        <TextView
+            android:layout_below="@+id/open_book"
+            android:id="@+id/UMAK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+
+            android:text="UMAK"
+            android:textColor="@color/black"
+            android:textSize="30sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/LIBRARY_APP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/UMAK"
+            android:layout_centerHorizontal="true"
+            android:text="LIBRARY APP"
+            android:textColor="@color/black"
+            android:textSize="30sp">
+
+        </TextView>
+
+
+
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+
+            android:id="@+id/umak_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:focusable="true"
+            android:hint="UMAK EMAIL"
+            android:textColorHighlight="262626"
+            android:textColorHint="262626"
+
+            >
+
+        </EditText>
+
+
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/button_umak_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/gilroybold"
-        ></TextView>
 
+        >
 
-
-</RelativeLayout>
+    </Button>
+</LinearLayout>
