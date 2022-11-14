@@ -16,14 +16,14 @@
         android:layout_height="wrap_content"
 
         >
+
         <ImageView
             android:id="@+id/open_book"
             android:layout_width="250dp"
             android:layout_height="210dp"
-            android:src="@drawable/ic_fi_xnluxl_open_book"
             android:layout_marginHorizontal="82dp"
             android:layout_marginTop="50dp"
-            >
+            android:src="@drawable/ic_fi_xnluxl_open_book">
 
         </ImageView>
 
