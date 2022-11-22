@@ -6,25 +6,23 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".Login" >
+    tools:context=".NewAccount" >
 
 
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         >
+
 
         <ImageView
             android:id="@+id/open_book"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginHorizontal="2dp"
-            android:layout_marginTop="10dp"
-
-            android:src="@drawable/library_logo">
+            android:layout_width="250dp"
+            android:layout_height="180dp"
+            android:src="@drawable/library_logo"
+            android:layout_marginHorizontal="82dp"
+            android:layout_marginTop="50dp">
 
 
         </ImageView>
@@ -37,7 +35,6 @@
             android:layout_below="@+id/open_book"
             android:layout_centerHorizontal="true"
             android:text="UMAK"
-            android:layout_marginTop="20dp"
             android:textColor="@color/black"
             android:textSize="30sp">
 
@@ -56,15 +53,15 @@
         </TextView>
     </RelativeLayout>
 
-
+<!--    email Verification-->
     <androidx.cardview.widget.CardView
+        android:id="@+id/CheckEmail"
+        android:visibility="visible"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-
         app:cardCornerRadius="30dp"
         android:layout_marginBottom="-30dp"
         >
@@ -78,18 +75,19 @@
 
 
             <TextView
-                android:layout_margin="10dp"
-                android:id="@+id/errorLogin"
+                android:id="@+id/errorEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="#FF0259"
                 android:fontFamily="@font/gilroyblackitalic"
                 android:paddingHorizontal="15dp"
-                android:text="Error Login Text"
+                android:text="Email not Found"
                 android:textColor="@color/white"
+                android:layout_margin="10dp"
                 android:textSize="15sp"
-                android:visibility="gone">
+                android:visibility="gone"
+                >
 
             </TextView>
 
@@ -121,15 +119,119 @@
                     </ImageView>
 
                     <EditText
-                        android:id="@+id/inputEmail"
+                        android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:layout_toRightOf="@+id/profileIcom"
                         android:background="@color/white"
                         android:fontFamily="@font/gilroymedium"
-                        android:hint="Email"
+                        android:hint="Check Email"
                         android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="15dp"
+                        android:textSize="15dp">
+
+                    </EditText>
+
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <Button
+                android:id="@+id/CheckEmailbtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:backgroundTint="@color/blue"
+                android:fontFamily="@font/gilroyextrabold"
+                android:padding="14dp"
+                android:text="Submit"
+                android:layout_marginTop="20dp"
+                android:textAlignment="center"
+                android:background="@color/blue"
+                android:textColor="@color/white"
+                android:textSize="18dp"></Button>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+<!--    Creating a Password-->
+    <androidx.cardview.widget.CardView
+        android:visibility="gone"
+        android:id="@+id/CreatePassword"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        app:cardCornerRadius="30dp"
+        android:layout_marginBottom="-30dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="40dp">
+
+
+            <TextView
+                android:id="@+id/errorLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="-30dp"
+                android:background="#FF0259"
+                android:fontFamily="@font/gilroyblackitalic"
+                android:paddingHorizontal="15dp"
+                android:text="Error Login Text"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:visibility="invisible">
+
+            </TextView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="5dp"
+                android:outlineSpotShadowColor="@color/blue"
+                android:outlineAmbientShadowColor="@color/blue"
+                android:backgroundTint="@color/white">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="2dp">
+
+                    <ImageView
+                        android:id="@+id/emailIcon"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_marginVertical="15dp"
+                        android:src="@drawable/ic_password"
+                        app:tint="@color/blue">
+
+                    </ImageView>
+
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_toRightOf="@+id/emailIcon"
+                        android:background="@color/white"
+                        android:fontFamily="@font/gilroymedium"
+                        android:hint="Create Password"
+                        android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="15dp"
                         android:textSize="15dp">
@@ -140,7 +242,7 @@
                         android:id="@+id/line"
                         android:layout_width="320dp"
                         android:layout_height="1dp"
-                        android:layout_below="@+id/profileIcom"
+                        android:layout_below="@+id/emailIcon"
                         android:background="#E91E63"
                         android:backgroundTint="@color/white" />
 
@@ -155,7 +257,7 @@
                         app:tint="@color/blue"></ImageView>
 
                     <EditText
-                        android:id="@+id/inputPassword"
+                        android:id="@+id/confirmPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/line"
@@ -163,7 +265,7 @@
                         android:layout_toRightOf="@+id/lockIcon"
                         android:background="@color/white"
                         android:fontFamily="@font/gilroymedium"
-                        android:hint="Password"
+                        android:hint="Confirm Password"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:padding="15dp"
@@ -174,48 +276,22 @@
             </androidx.cardview.widget.CardView>
 
 
-            <TextView
-                android:id="@+id/forgotpassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginVertical="10dp"
-                android:textSize="15dp"
-                android:fontFamily="@font/gilroymedium"
-                android:text="Forgot Password?"></TextView>
+
 
             <Button
-                android:id="@+id/login"
+                android:id="@+id/SubmitAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:backgroundTint="@color/blue"
                 android:fontFamily="@font/gilroyextrabold"
                 android:padding="14dp"
-                android:outlineSpotShadowColor="@color/blue"
-                android:outlineAmbientShadowColor="@color/blue"
-                android:text="Login"
-                android:layout_marginTop="10dp"
+                android:text="Submit"
+                android:layout_marginTop="20dp"
                 android:textAlignment="center"
                 android:background="@color/blue"
                 android:textColor="@color/white"
                 android:textSize="18dp"></Button>
-
-            <TextView
-                android:id="@+id/newAccount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="30dp"
-
-                android:layout_gravity="center"
-                android:textSize="20dp"
-                android:textColor="@color/blue"
-                android:fontFamily="@font/gilroymedium"
-                android:text="New Account ?"></TextView>
-
-
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
