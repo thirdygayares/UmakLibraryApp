@@ -14,20 +14,25 @@
         android:theme="@style/Theme.UmakLibraryApp"
         tools:targetApi="31">
         <activity
+            android:name=".Training.Upload"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".NewAccount"
             android:exported="false" />
         <activity
             android:name=".BookDetails"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Librarian.AddBooks"
             android:exported="false" /> <!-- ito yung unang lalabas pag ni-run -->
         <activity
             android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
