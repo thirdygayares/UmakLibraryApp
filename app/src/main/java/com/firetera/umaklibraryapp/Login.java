@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class Login extends AppCompatActivity {
 
     Button login;
-    EditText inputEmail, inputPassword;
+    TextInputEditText inputEmail, inputPassword;
     TextView newAccount,errorLogin;
 
     FirebaseAuth firebaseAuth;
@@ -98,8 +99,8 @@ public class Login extends AppCompatActivity {
     private void initxml() {
         errorLogin = (TextView) findViewById(R.id.errorLogin);
         login = (Button) findViewById(R.id.login);
-        inputEmail = (EditText) findViewById(R.id.inputEmail);
-        inputPassword = (EditText) findViewById(R.id.inputPassword);
+        inputEmail =  findViewById(R.id.inputEmail);
+        inputPassword =  findViewById(R.id.inputPassword);
         newAccount = (TextView) findViewById(R.id.newAccount);
 
     }

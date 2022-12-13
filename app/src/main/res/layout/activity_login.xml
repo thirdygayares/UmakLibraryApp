@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,9 +10,9 @@
 
 
     <RelativeLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         >
 
         <ImageView
@@ -23,10 +22,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="2dp"
             android:layout_marginTop="10dp"
-
             android:src="@drawable/library_logo">
-
-
         </ImageView>
 
 
@@ -36,8 +32,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/open_book"
             android:layout_centerHorizontal="true"
-            android:text="UMAK"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/arialmedium"
+            android:text="UMAK"
             android:textColor="@color/black"
             android:textSize="30sp">
 
@@ -49,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/UMAK"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/arialmedium"
             android:text="LIBRARY APP"
             android:textColor="@color/black"
             android:textSize="30sp">
@@ -64,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:orientation="vertical"
-
+        app:cardElevation="0dp"
         app:cardCornerRadius="30dp"
         android:layout_marginBottom="-30dp"
         >
@@ -93,48 +91,31 @@
 
             </TextView>
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="5dp"
-                android:outlineSpotShadowColor="@color/blue"
-                android:outlineAmbientShadowColor="@color/blue"
-                android:backgroundTint="@color/white">
 
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="10dp"
+                    android:orientation="vertical"
                     android:paddingVertical="2dp">
 
-                    <ImageView
-                        android:id="@+id/profileIcom"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_marginHorizontal="5dp"
-                        android:layout_marginVertical="15dp"
-                        android:src="@drawable/ic_user_email"
-                        app:tint="@color/blue">
-
-                    </ImageView>
-
-                    <EditText
-                        android:id="@+id/inputEmail"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_toRightOf="@+id/profileIcom"
-                        android:background="@color/white"
-                        android:fontFamily="@font/gilroymedium"
+                        android:layout_marginVertical="3dp"
                         android:hint="Email"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:padding="15dp"
-                        android:textSize="15dp">
-
-                    </EditText>
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_baseline_email_24"
+                        app:endIconTint="@color/blue"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <View
                         android:id="@+id/line"
@@ -144,34 +125,24 @@
                         android:background="#E91E63"
                         android:backgroundTint="@color/white" />
 
-                    <ImageView
-                        android:id="@+id/lockIcon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_below="@+id/line"
-                        android:layout_marginHorizontal="5dp"
-                        android:layout_marginVertical="15dp"
-                        android:src="@drawable/ic_password"
-                        app:tint="@color/blue"></ImageView>
 
-                    <EditText
-                        android:id="@+id/inputPassword"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/line"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_toRightOf="@+id/lockIcon"
-                        android:background="@color/white"
-                        android:fontFamily="@font/gilroymedium"
-                        android:hint="Password"
-                        android:inputType="textPassword"
-                        android:maxLines="1"
-                        android:padding="15dp"
-                        android:textSize="15dp">
+                        android:layout_marginVertical="3dp"
+                        android:hint="Enter password"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="@color/blue"
 
-                    </EditText>
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
 
 
             <TextView
@@ -184,30 +155,31 @@
                 android:fontFamily="@font/gilroymedium"
                 android:text="Forgot Password?"></TextView>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/login"
+                style="@style/TextAppearance.AppCompat.Widget.Button.Inverse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:backgroundTint="@color/blue"
-                android:fontFamily="@font/gilroyextrabold"
-                android:padding="14dp"
-                android:outlineSpotShadowColor="@color/blue"
-                android:outlineAmbientShadowColor="@color/blue"
+                android:layout_marginHorizontal="80dp"
+                android:layout_marginVertical="3dp"
                 android:text="Login"
-                android:layout_marginTop="10dp"
-                android:textAlignment="center"
-                android:background="@color/blue"
+                android:paddingVertical="15dp"
+                android:stateListAnimator="@null"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="18dp"></Button>
+                app:backgroundTint="@color/blue"
+                app:cornerRadius="4dp"
+                app:rippleColor="@color/blue"
+                app:strokeColor="@color/blue"
+                app:strokeWidth="1dp"></com.google.android.material.button.MaterialButton>
 
             <TextView
+                android:visibility="invisible"
                 android:id="@+id/newAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="30dp"
-
                 android:layout_gravity="center"
                 android:textSize="20dp"
                 android:textColor="@color/blue"
