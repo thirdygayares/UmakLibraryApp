@@ -34,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         email = (TextView) findViewById(R.id.email);
         Logout = findViewById(R.id.logout);
 
+
+
+
+
+
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,22 +47,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        Button buttonShelves = findViewById(R.id.button_shelves);
-//        Button buttonBorrow = findViewById(R.id.button_borrow);
-//
-//        buttonShelves.setOnClickListener(new view.OnClickListener(){
-//            @override
-//            public void onClick(View v) {
-//                Toast.makeText(context:MainActivity.this, text "SHEALVES", Toast.LENGHT_SHORT).show()
-//            }
-//        });
-//        switchEnableButtom.setOnCheckedChangeListener(){
-//            @override
-//            public void onClick(View v) {
-//                Toast.makeText(context:MainActivity.this, text "BORROW", Toast.LENGHT_SHORT).show()
-//            }
-//
-//        }
+
 
 
     }
