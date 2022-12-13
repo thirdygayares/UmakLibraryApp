@@ -93,7 +93,15 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(!firebaseAuth.getUid().isEmpty()){
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void initxml() {
