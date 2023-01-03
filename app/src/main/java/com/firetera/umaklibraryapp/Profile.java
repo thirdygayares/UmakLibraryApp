@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firetera.umaklibraryapp.Database.DatabaseHelper;
 import com.firetera.umaklibraryapp.extension.CodeCollege;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,6 +38,10 @@ public class Profile extends Fragment {
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
+
+    //Databasehelper
+    DatabaseHelper databaseHelper;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,6 +54,9 @@ public class Profile extends Fragment {
         //setup firebase
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+
+        //initiate databasehelper
+        databaseHelper = new DatabaseHelper(getContext());
 
         //process dialog Method
         processDialogMethod();
@@ -75,6 +85,8 @@ public class Profile extends Fragment {
 
     private void logoutMehod() {
 
+
+
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,9 +94,13 @@ public class Profile extends Fragment {
                 progressDialog.setTitle("Logout");
                 progressDialog.show();
 
-                firebaseAuth.signOut();
-                Intent intent = new Intent(getContext(),Login.class);
-               startActivity(intent);
+
+                Boolean deleteAccountLocal = databaseHelper.logout(firebaseAuth.getUid());
+                if(deleteAccountLocal == true){
+                    firebaseAuth.signOut();
+                    Intent intent = new Intent(getContext(),Login.class);
+                    startActivity(intent);
+                }
 
                progressDialog.hide();
 
@@ -101,40 +117,27 @@ public class Profile extends Fragment {
     }
 
     private void detailsMethod() {
-        progressDialog.setTitle("Fetching Data");
-        progressDialog.show();
+        //progressDialog.setTitle("Fetching Data");
+        //progressDialog.show();
 
-        firestore.collection("borrowers")
-                .document(firebaseAuth.getUid()).get()
-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+        Cursor getAccount = databaseHelper.getValue();
+        try {
+            if(getAccount.getCount() > 0){
+                while(getAccount.moveToNext()){
+                    CodeCollege codeCollege = new CodeCollege(getAccount.getString(4));
+                    txt_fullname.setText(getAccount.getString(0));
+                    txt_college_section.setText(codeCollege.getCollege() + " " + getAccount.getString(2));
+                    txt_email.setText(getAccount.getString(7));
+                }
+            }else{
+                Toast.makeText(getContext(), "walang laman", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            Log.d("TAG", e.getMessage());
+        }
 
 
-                        if(documentSnapshot.exists()){
-                            txt_fullname.setText(documentSnapshot.get("Name").toString());
 
-                            //shorcut of colleges
-                            CodeCollege codeCollege = new CodeCollege(documentSnapshot.get("College").toString());
-
-                            txt_college_section.setText(codeCollege.getCollege() + " " + documentSnapshot.get("Section").toString() );
-                            txt_email.setText(documentSnapshot.get("UmakEmail").toString());
-
-                        }else{
-                            Toast.makeText(getContext(),"something error",Toast.LENGTH_SHORT).show();
-
-                        }
-                        progressDialog.hide();
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
-                        progressDialog.hide();
-
-                    }
-                });
     }
 
     private void initXml() {
