@@ -1,9 +1,16 @@
 package com.firetera.umaklibraryapp.Model;
 
 public class Model1 {
+    String Id;
     String title;
     int image;
     String imagestring;
+
+    public Model1(String id, String title, String imagestring) {
+        Id = id;
+        this.title = title;
+        this.imagestring = imagestring;
+    }
 
     public Model1(String title, int image) {
         this.title = title;
@@ -25,5 +32,9 @@ public class Model1 {
 
     public int getImage() {
         return image;
+    }
+
+    public String getId() {
+        return Id;
     }
 }

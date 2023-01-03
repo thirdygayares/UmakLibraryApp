@@ -9,16 +9,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.firetera.umaklibraryapp.Adapter.Adapter1;
 import com.firetera.umaklibraryapp.Adapter.Adapter2;
 import com.firetera.umaklibraryapp.Adapter.MyInterface;
 import com.firetera.umaklibraryapp.Model.Model1;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -40,6 +50,11 @@ public class Homepage extends Fragment implements MyInterface {
     EditText input_search;
     RecyclerView recycler_library_logs, recycler_category,recycler_you_might_like,recycler_course_related,recycler_popular;
 
+    //initiate firebase
+    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+
 
     @Nullable
     @Override
@@ -53,7 +68,8 @@ public class Homepage extends Fragment implements MyInterface {
         //Adapter
          LibraryAdapter = new Adapter1(getContext(), LibrayLogsModel , this, "librarylogs");
          CategoryAdapter = new Adapter1(getContext(), CategoryModel , this, "category");
-        YouMightLikeAdapter = new Adapter2(getContext(), YouMightLikeModel , this, "youmightlike");
+
+         YouMightLikeAdapter = new Adapter2(getContext(), YouMightLikeModel , this, "youmightlike");
         CourseRelatedAdapter = new Adapter2(getContext(), CourseRelatedModel , this, "course");
         PopularAdapter = new Adapter2(getContext(), PopularModel , this, "popular");
 
@@ -68,70 +84,85 @@ public class Homepage extends Fragment implements MyInterface {
     }
 
     private void PopularMethod() {
-        //dummy data for you might like section
-        ArrayList<String> Title = new ArrayList<>();
-        ArrayList<String> Image = new ArrayList<>();
 
-        Title.add("She said Three");
-        Title.add("Noli Me Tangere");
-        Title.add("Python for beginner");
-
-        Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2Fshesaid.png?alt=media&token=476e5b73-a260-4e5f-aada-d4ad430e2f69");
-        Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2Fnoli.png?alt=media&token=5af5f93d-71e3-4c77-a52d-43784487bc80");
-        Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2Fpythonforbeginners.png?alt=media&token=5997a312-2421-40f8-92fd-e67bf76c5565");
-
-
-        for(int i=0;i<Title.size(); i++){
-            PopularModel.add(new Model1(Title.get(i), Image.get(i)));
-        }
-
-        PopularAdapter.notifyItemInserted(Title.size());
+        firestore.collection("BOOKS").limit(30)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot document:task.getResult()){
+                                PopularModel.add(new Model1(document.getId(),document.get("bookdetails.TITLE").toString(), document.get("image_URL").toString()));
+                                PopularAdapter.notifyItemInserted(PopularModel.size());
+                            }
+                        }else{
+                            Log.d("TAG","Errorgettingdocuments:",task.getException());
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("TAG", e.getMessage());
+                    }
+                });
 
         recycler_popular.setAdapter(PopularAdapter);
         recycler_popular.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void CourseRelatedMethod() {
-        //dummy data for course related section
-        ArrayList<String> Title = new ArrayList<>();
-        ArrayList<String> Image = new ArrayList<>();
 
-        Title.add("The Python Book");
-        Title.add("Python for beginner");
-        Title.add("Fundamentals of Computer Programming");
 
-        Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2Fpythonbook.png?alt=media&token=b6c1bb29-0ebc-4307-8b5f-03bd623c44d6");
-        Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2Fpythonforbeginners.png?alt=media&token=5997a312-2421-40f8-92fd-e67bf76c5565");
-        Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2FComputerprogrammingbook.png?alt=media&token=11188061-2cc5-4aad-87ae-08e8a2c63520");
-
-        for(int i=0;i<Title.size(); i++){
-            CourseRelatedModel.add(new Model1(Title.get(i), Image.get(i)));
-        }
-
-        CourseRelatedAdapter.notifyItemInserted(Title.size());
+        firestore.collection("BOOKS").limit(30)
+                .whereEqualTo("category", "Computer Science")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot document:task.getResult()){
+                                CourseRelatedModel.add(new Model1(document.getId(),document.get("bookdetails.TITLE").toString(), document.get("image_URL").toString()));
+                                CourseRelatedAdapter.notifyItemInserted(CourseRelatedModel.size());
+                            }
+                        }else{
+                            Log.d("TAG","Errorgettingdocuments:",task.getException());
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("TAG", e.getMessage());
+                    }
+                });
 
         recycler_course_related.setAdapter(CourseRelatedAdapter);
         recycler_course_related.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 
     private void YouMightLikeMethod() {
-        //dummy data for you might like section
-        ArrayList<String> Title = new ArrayList<>();
-        ArrayList<String> Image = new ArrayList<>();
 
-        Title.add("Fundamentals of Computer Programming");
-        Title.add("Python for beginners");
-        Title.add("Web Programming");
-
-        Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2FComputerprogrammingbook.png?alt=media&token=11188061-2cc5-4aad-87ae-08e8a2c63520");
-        Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2Fpythonforbeginners.png?alt=media&token=5997a312-2421-40f8-92fd-e67bf76c5565");
-        Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2Fwebprogrammingbooks.png?alt=media&token=279f2997-30b5-4c9f-a492-ca14ef8498ea");
-
-        for(int i=0;i<Title.size(); i++){
-            YouMightLikeModel.add(new Model1(Title.get(i), Image.get(i)));
-        }
-
-        CourseRelatedAdapter.notifyItemInserted(Title.size());
+        firestore.collection("BOOKS")
+                .orderBy("bookdetails.CREATED_ON", Query.Direction.DESCENDING)
+                .limit(30)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot document:task.getResult()){
+                                YouMightLikeModel.add(new Model1(document.getId(),document.get("bookdetails.TITLE").toString(), document.get("image_URL").toString()));
+                                YouMightLikeAdapter.notifyItemInserted(YouMightLikeModel.size());
+                            }
+                        }else{
+                            Log.d("TAG","Errorgettingdocuments:",task.getException());
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("TAG", e.getMessage());
+                    }
+                });
 
         recycler_you_might_like.setAdapter(YouMightLikeAdapter);
         recycler_you_might_like.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -238,6 +269,28 @@ public class Homepage extends Fragment implements MyInterface {
 
     @Override
     public void onItemClick(int pos, String onclick) {
+        switch (onclick){
+            case "librarylogs":
+                Toast.makeText(getContext(), "library logs", Toast.LENGTH_SHORT).show();
+                break;
 
+            case "category":
+                Toast.makeText(getContext(), "category", Toast.LENGTH_SHORT).show();
+                break;
+
+            case "youmightlike":
+                Toast.makeText(getContext(), YouMightLikeModel.get(pos).getId(), Toast.LENGTH_SHORT).show();
+
+
+                break;
+
+            case "course":
+                Toast.makeText(getContext(),  CourseRelatedModel.get(pos).getId(), Toast.LENGTH_SHORT).show();
+                break;
+
+            case "popular":
+                Toast.makeText(getContext(),  PopularModel.get(pos).getId(), Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }
