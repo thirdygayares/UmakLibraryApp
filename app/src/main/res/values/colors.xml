@@ -11,6 +11,10 @@
     <color name="background">#FAFAFA</color>
     <color name="outline">#979691</color>
     <color name="blue">#819BF8</color>
+    <color name="text_primary">#7B6868</color>
+    <color name="text_secondary">#383733</color>
+
+
     <color name="secondary">#5175F5</color>
 
 </resources>

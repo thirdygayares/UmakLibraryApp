@@ -9,4 +9,14 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">51%</item>
     </style>
+
+    <style name="imageViewRounded20">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20%</item>
+    </style>
+
+    <style name="imageViewRounded5">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12%</item>
+    </style>
 </resources>

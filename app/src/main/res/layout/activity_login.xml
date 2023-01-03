@@ -8,7 +8,6 @@
     tools:context=".Login" >
 
 
-
     <RelativeLayout
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
@@ -34,7 +33,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/arialmedium"
-            android:text="UMAK"
+            android:text="HERONS"
             android:textColor="@color/black"
             android:textSize="30sp">
 
@@ -47,7 +46,7 @@
             android:layout_below="@+id/UMAK"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/arialmedium"
-            android:text="LIBRARY APP"
+            android:text="LIBRARY"
             android:textColor="@color/black"
             android:textSize="30sp">
 
@@ -113,6 +112,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/inputEmail"
                             android:layout_width="match_parent"
+                            android:inputType="text"
+                            android:maxLines="1"
                             android:layout_height="wrap_content"
                             />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -138,6 +139,7 @@
                         >
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/inputPassword"
+                            android:inputType="textPassword"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             />
