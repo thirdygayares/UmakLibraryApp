@@ -80,6 +80,7 @@ public class Homepage extends Fragment implements MyInterface {
         Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2Fnoli.png?alt=media&token=5af5f93d-71e3-4c77-a52d-43784487bc80");
         Image.add("https://firebasestorage.googleapis.com/v0/b/umak-library-app.appspot.com/o/Book_cover%2Fpythonforbeginners.png?alt=media&token=5997a312-2421-40f8-92fd-e67bf76c5565");
 
+
         for(int i=0;i<Title.size(); i++){
             PopularModel.add(new Model1(Title.get(i), Image.get(i)));
         }
@@ -149,11 +150,11 @@ public class Homepage extends Fragment implements MyInterface {
         Title.add("Collaboration");
         Title.add("Clearance or Visitor");
 
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
+        Image.add(R.drawable.logs_reading);
+        Image.add(R.drawable.logs_sdi);
+        Image.add(R.drawable.logs_borrowing);
+        Image.add(R.drawable.logs_collaboration);
+        Image.add(R.drawable.logs_clearance);
 
         for(int i=0; i<Title.size(); i++){
             LibrayLogsModel.add(new Model1(Title.get(i),Image.get(i)));
@@ -191,26 +192,27 @@ public class Homepage extends Fragment implements MyInterface {
         Title.add("Autobiography");
         Title.add("Short Story");
 
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
-        Image.add(R.drawable.placeholder);
+        Image.add(R.drawable.category_fiction);
+        Image.add(R.drawable.category_mystery);
+        Image.add(R.drawable.category_novel);
+        Image.add(R.drawable.category_sciencefiction);
+        Image.add(R.drawable.category_fantasy);
+        Image.add(R.drawable.category_narrative);
+        Image.add(R.drawable.category_nonfiction);
+        Image.add(R.drawable.category_history);
+        Image.add(R.drawable.category_children);
+        Image.add(R.drawable.category_computerscience);
+        Image.add(R.drawable.category_romance);
+        Image.add(R.drawable.category_thriller);
+        Image.add(R.drawable.category_fantasyfiction);
+        Image.add(R.drawable.category_horror);
+        Image.add(R.drawable.category_literary);
+        Image.add(R.drawable.category_poem);
+        Image.add(R.drawable.category_memoir);
+        Image.add(R.drawable.category_selfhelp);
+        Image.add(R.drawable.category_autobiography);
+        Image.add(R.drawable.category_shorthistory);
+
 
         for(int i=0; i<Title.size(); i++){
             CategoryModel.add(new Model1(Title.get(i),Image.get(i)));

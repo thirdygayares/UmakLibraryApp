@@ -16,25 +16,30 @@
 
         <activity
             android:name=".Training.Upload"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".NewAccount"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".BookDetails"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
             android:name=".Librarian.AddBooks"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false" /> <!-- ito yung unang lalabas pag ni-run -->
         <activity
             android:name=".Login"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
