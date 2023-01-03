@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -54,7 +55,8 @@ public class Homepage extends Fragment implements MyInterface {
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-
+    //static
+    static String ID = "", BookName = "" , BookImage = "";
 
     @Nullable
     @Override
@@ -269,6 +271,7 @@ public class Homepage extends Fragment implements MyInterface {
 
     @Override
     public void onItemClick(int pos, String onclick) {
+        Intent intent;
         switch (onclick){
             case "librarylogs":
                 Toast.makeText(getContext(), "library logs", Toast.LENGTH_SHORT).show();
@@ -279,17 +282,27 @@ public class Homepage extends Fragment implements MyInterface {
                 break;
 
             case "youmightlike":
-                Toast.makeText(getContext(), YouMightLikeModel.get(pos).getId(), Toast.LENGTH_SHORT).show();
-
-
+                ID = YouMightLikeModel.get(pos).getId();
+                BookName = YouMightLikeModel.get(pos).getTitle();
+                BookImage = YouMightLikeModel.get(pos).getImagestring();
+                intent = new Intent(getContext(), BookDetails.class);
+                startActivity(intent);
                 break;
 
             case "course":
-                Toast.makeText(getContext(),  CourseRelatedModel.get(pos).getId(), Toast.LENGTH_SHORT).show();
+                ID = CourseRelatedModel.get(pos).getId();
+                BookName = CourseRelatedModel.get(pos).getTitle();
+                BookImage = CourseRelatedModel.get(pos).getImagestring();
+                intent = new Intent(getContext(), BookDetails.class);
+                startActivity(intent);
                 break;
 
             case "popular":
-                Toast.makeText(getContext(),  PopularModel.get(pos).getId(), Toast.LENGTH_SHORT).show();
+                ID = PopularModel.get(pos).getId();
+                BookName = PopularModel.get(pos).getTitle();
+                BookImage = PopularModel.get(pos).getImagestring();
+                intent = new Intent(getContext(), BookDetails.class);
+                startActivity(intent);
                 break;
         }
     }

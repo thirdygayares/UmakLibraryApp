@@ -19,4 +19,17 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12%</item>
     </style>
+
+
+        <style name="imageViewRounded10">
+            <item name="cornerFamily">rounded</item>
+            <item name="cornerSize">10%</item>
+        </style>
+
+        <style name="BottomNavigationView.style" parent="@style/TextAppearance.AppCompat.Caption">
+            <item name="android:textSize">15sp</item>
+        </style>
+
+
+
 </resources>
