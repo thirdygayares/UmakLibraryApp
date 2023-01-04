@@ -74,4 +74,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery("SELECT * FROM " + TABLESTUDENT, null);
         return  data;
     }
+
+    //getName
+    public Cursor getName(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT  "+ NAME + " FROM " + TABLESTUDENT, null);
+        return  data;
+    }
+
+    //getSection
+    public Cursor getSection(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT "+ SECTION + " FROM " + TABLESTUDENT, null);
+        return  data;
+    }
+
+    //get Course
+    public Cursor getCourse(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT "+ COURSE + " FROM " + TABLESTUDENT, null);
+        return  data;
+    }
+
+    //get Course
+    public Cursor getEmail(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT "+ EMAIL + " FROM " + TABLESTUDENT, null);
+        return  data;
+    }
+
+    //get Course
+    public Cursor getCollege(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT "+ COLLEGE + " FROM " + TABLESTUDENT, null);
+        return  data;
+    }
+
+
+
+
+
+
+
+
+
 }

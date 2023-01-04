@@ -54,4 +54,9 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     implementation 'com.squareup.picasso:picasso:2.8'
+
+    //scan qr code or barcode
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+    // https://mvnrepository.com/artifact/com.google.zxing/core
+    implementation group: 'com.google.zxing', name: 'core', version: '3.5.1'
 }
