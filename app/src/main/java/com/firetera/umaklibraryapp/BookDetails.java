@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import java.sql.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -50,12 +51,6 @@ public class BookDetails extends AppCompatActivity {
     //static
     static String code = "";
 
-//    //get Data
-//    MyName myName;
-//    MySection mySection;
-//    MyEmail myEmail;
-//    MyCollege myCollege;
-//    MyCourse myCourse;
 
 
     @Override
@@ -92,35 +87,46 @@ public class BookDetails extends AppCompatActivity {
         btn_borrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FieldValue date = FieldValue.serverTimestamp();
-                code = txt_bookTitle.getText().toString() +  date;
+                //FieldValue date = FieldValue.serverTimestamp();
+                // getting the system date
+
+                Date date = new Date();
+
+                // getting the object of the Timestamp class
+                Timestamp ts = new Timestamp(date.getTime());
+
+                code = ts.toString() + "borrow";
                 String booksid = homepage.ID;
+                String image = homepage.BookImage;
                 String title = txt_bookTitle.getText().toString();
                 String borrowerId = firebaseAuth.getUid();
                 String borrowerName = MyName.getName();
                 String borrowerCollege = MyCollege.getName();
                 String borrowerCourse = MyCourse.getName();
-               // String borrowerSection = MySection.getName();
+                String borrowerSection = MySection.getName();
                 String borrowerEmail = MyEmail.getName();
 
                 HashMap<String, Object> uploadBorrowRaw = new HashMap<>();
-                uploadBorrowRaw.put("QR_CODE", date);
+                uploadBorrowRaw.put("QR_CODE", code);
                 uploadBorrowRaw.put("BOOK_ID", booksid);
                 uploadBorrowRaw.put("TITLE", title);
                 uploadBorrowRaw.put("BORROWER_ID", borrowerId);
                 uploadBorrowRaw.put("BORROWER_NAME", borrowerName);
                 uploadBorrowRaw.put("COLLEGE", borrowerCollege);
                 uploadBorrowRaw.put("COURSE", borrowerCourse);
-              //  uploadBorrowRaw.put("SECTION", borrowerSection);
+                uploadBorrowRaw.put("SECTION", borrowerSection);
                 uploadBorrowRaw.put("EMAIL", borrowerEmail);
+                uploadBorrowRaw.put("IMAGE", image);
 
-                firestore.collection("BORROW_WAITING_AREA").add(uploadBorrowRaw)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+
+                firestore.collection("BORROW_WAITING_AREA").document(code).set(uploadBorrowRaw)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("TAG", documentReference.getId());
+                            public void onSuccess(Void unused) {
+
                                 Intent intent = new Intent(BookDetails.this, Borrow.class);
                                 startActivity(intent);
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -128,8 +134,6 @@ public class BookDetails extends AppCompatActivity {
                                 Toast.makeText(BookDetails.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
-
-
 
 
             }

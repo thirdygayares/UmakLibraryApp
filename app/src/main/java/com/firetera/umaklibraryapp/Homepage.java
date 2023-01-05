@@ -22,16 +22,26 @@ import com.firetera.umaklibraryapp.Adapter.Adapter1;
 import com.firetera.umaklibraryapp.Adapter.Adapter2;
 import com.firetera.umaklibraryapp.Adapter.MyInterface;
 import com.firetera.umaklibraryapp.Model.Model1;
+import com.firetera.umaklibraryapp.extension.MyCollege;
+import com.firetera.umaklibraryapp.extension.MyCourse;
+import com.firetera.umaklibraryapp.extension.MyEmail;
+import com.firetera.umaklibraryapp.extension.MyName;
+import com.firetera.umaklibraryapp.extension.MySection;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Homepage extends Fragment implements MyInterface {
 
@@ -58,6 +68,10 @@ public class Homepage extends Fragment implements MyInterface {
     //static
     static String ID = "", BookName = "" , BookImage = "";
 
+    //static to get what is the log activity
+    static String activityLog="";
+    static String code = "";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -81,9 +95,18 @@ public class Homepage extends Fragment implements MyInterface {
         YouMightLikeMethod();
         CourseRelatedMethod();
         PopularMethod();
-
+        initPersona();
         return view;
     }
+
+    private void initPersona() {
+        MyName myName = new MyName(getContext());
+        MySection mySection = new MySection(getContext());
+        MyCollege myCollege = new MyCollege(getContext());
+        MyCourse myCourse = new MyCourse(getContext());
+        MyEmail myEmail = new MyEmail(getContext());
+    }
+
 
     private void PopularMethod() {
 
@@ -199,6 +222,7 @@ public class Homepage extends Fragment implements MyInterface {
         recycler_library_logs.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
     }
 
+
     private void CategoryMethod() {
         //data of library logs
         ArrayList<String> Title = new ArrayList<>();
@@ -274,8 +298,50 @@ public class Homepage extends Fragment implements MyInterface {
         Intent intent;
         switch (onclick){
             case "librarylogs":
-                Toast.makeText(getContext(), "library logs", Toast.LENGTH_SHORT).show();
+                activityLog = LibrayLogsModel.get(pos).getTitle();
+                Date date = new Date();
+
+                // getting the object of the Timestamp class
+                Timestamp ts = new Timestamp(date.getTime());
+
+                code = ts + "logs";
+
+
+                String borrowerId = firebaseAuth.getUid();
+                String borrowerName = MyName.getName();
+                String borrowerCollege = MyCollege.getName();
+                String borrowerCourse = MyCourse.getName();
+                String borrowerSection = MySection.getName();
+                String borrowerEmail = MyEmail.getName();
+
+                HashMap<String, Object> uploadBorrowRaw = new HashMap<>();
+                uploadBorrowRaw.put("QR_CODE", code);
+                uploadBorrowRaw.put("ACTIVITY", activityLog);
+                uploadBorrowRaw.put("BORROWER_ID", borrowerId);
+                uploadBorrowRaw.put("BORROWER_NAME", borrowerName);
+                uploadBorrowRaw.put("COLLEGE", borrowerCollege);
+                uploadBorrowRaw.put("COURSE", borrowerCourse);
+                uploadBorrowRaw.put("SECTION", borrowerSection);
+                uploadBorrowRaw.put("EMAIL", borrowerEmail);
+
+                firestore.collection("LOGS_WAITING_AREA")
+                        .document(code)
+                        .set(uploadBorrowRaw)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Intent intent = new Intent(getContext(), ActivityLogs.class);
+                                startActivity(intent);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                 break;
+
+
 
             case "category":
                 Toast.makeText(getContext(), "category", Toast.LENGTH_SHORT).show();

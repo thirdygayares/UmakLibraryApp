@@ -48,17 +48,15 @@ public class Borrow extends AppCompatActivity {
 
     private void generateQrCodeMethod() {
 
-                String random =  UUID.randomUUID().toString();
+                BookDetails bookDetails = new BookDetails(); //get code
+                Homepage homepage = new Homepage();
+                String random =  bookDetails.code;
                 qrCode = createBitmap(random);
 
                 img_qr.setImageBitmap(qrCode);
-
-                Homepage homepage = new Homepage();
                 txt_booktitle.setText(homepage.BookName);
 
-
                 // Log.d(TAG, saveQr.);
-
                 //convertBitmapQrCode = getImageUri(RegisterBook.this,saveQr);
                 //Log.d(TAG, convertBitmapQrCode.toString());
             }

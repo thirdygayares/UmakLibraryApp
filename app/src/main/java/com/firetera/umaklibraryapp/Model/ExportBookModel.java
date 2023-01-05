@@ -7,13 +7,20 @@ public class ExportBookModel {
         String IMAGE_URL;
         String AUTHOR;
         String CATEGORY;
+        String ADDEDBY;
 
-    public ExportBookModel(String BOOK_ID, String TITLE, String IMAGE_URL, String AUTHOR, String CATEGORY) {
+
+    public ExportBookModel(String BOOK_ID, String TITLE, String IMAGE_URL, String AUTHOR, String CATEGORY, String ADDEDBY) {
         this.BOOK_ID = BOOK_ID;
         this.TITLE = TITLE;
         this.IMAGE_URL = IMAGE_URL;
         this.AUTHOR = AUTHOR;
         this.CATEGORY = CATEGORY;
+        this.ADDEDBY = ADDEDBY;
+    }
+
+    public String getADDEDBY() {
+        return ADDEDBY;
     }
 
     public String getBOOK_ID() {

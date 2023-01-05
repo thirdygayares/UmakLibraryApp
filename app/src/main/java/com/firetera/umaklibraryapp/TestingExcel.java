@@ -1,5 +1,6 @@
 package com.firetera.umaklibraryapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -8,11 +9,19 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.firetera.umaklibraryapp.Model.ExportBookModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -40,6 +49,8 @@ public class TestingExcel extends AppCompatActivity {
     private static final int STORAGE_PERMISSION_CODE = 101;
 
     Button btn_export;
+
+    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,29 +85,27 @@ public class TestingExcel extends AppCompatActivity {
         ArrayList<String> AUTHOR = new ArrayList<>();
         ArrayList<String> CATEGORY = new ArrayList<>();
 
-        BOOK_ID.add("121323");
-        BOOK_ID.add("1232r1323");
-        BOOK_ID.add("34121323");
 
-        TITLE.add("121323");
-        TITLE.add("1232r1323");
-        TITLE.add("34121323");
+        firestore.collection("BOOKS").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot documentSnapshot: task.getResult()){
 
-        AUTHOR.add("121323");
-        AUTHOR.add("1232r1323");
-        AUTHOR.add("34121323");
+                                    exportBookModels.add(new ExportBookModel(documentSnapshot.getId(), documentSnapshot.get("bookdetails.TITLE").toString(), documentSnapshot.get("author").toString(), documentSnapshot.get("category").toString(), documentSnapshot.get("image_URL").toString(), documentSnapshot.get("bookdetails.ADDED_BY").toString()));
 
-        CATEGORY.add("121323");
-        CATEGORY.add("1232r1323");
-        CATEGORY.add("34121323");
 
-        IMAGE_URL.add("121323");
-        IMAGE_URL.add("1232r1323");
-        IMAGE_URL.add("34121323");
+                            }
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    Log.d("TAG", e.getMessage());
+                    }
+                });
 
-        for(int i=0; i<TITLE.size(); i++){
-            exportBookModels.add(new ExportBookModel(BOOK_ID.get(i), TITLE.get(i),AUTHOR.get(i), CATEGORY.get(i), IMAGE_URL.get(i)));
-        }
 
 
 
@@ -141,15 +150,19 @@ public class TestingExcel extends AppCompatActivity {
             cell.setCellStyle(headerStyle);
 
             cell = row.createCell(2);
-            cell.setCellValue("IMAGE_URL");
+            cell.setCellValue("AUTHOR");
             cell.setCellStyle(headerStyle);
 
             cell = row.createCell(3);
-            cell.setCellValue("AUTHOR");
+            cell.setCellValue("IMAGE_URL");
             cell.setCellStyle(headerStyle);
 
             cell = row.createCell(4);
             cell.setCellValue("CATEGORY");
+            cell.setCellStyle(headerStyle);
+
+            cell = row.createCell(5);
+            cell.setCellValue("ADDED BY");
             cell.setCellStyle(headerStyle);
 
             for (int i = 0; i < exportBookModels.size(); i++) {
@@ -174,7 +187,11 @@ public class TestingExcel extends AppCompatActivity {
 
                 cell = row.createCell(4);
                 cell.setCellValue(exportBookModels.get(i).getCATEGORY());
-                sheet.setColumnWidth(4, (exportBookModels.get(i).getCATEGORY().length() + 30) * 256);
+                sheet.setColumnWidth(4, (exportBookModels.get(i).getCATEGORY().length() + 30) * 25);
+
+                cell = row.createCell(5);
+                cell.setCellValue(exportBookModels.get(i).getADDEDBY());
+                sheet.setColumnWidth(5, (exportBookModels.get(i).getADDEDBY().length() + 30) * 25);
 
             }
 
