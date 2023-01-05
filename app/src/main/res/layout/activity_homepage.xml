@@ -71,15 +71,15 @@
             android:textSize="16dp"
             />
 
-         <ImageView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_alignParentRight="true"
-             android:layout_centerVertical="true"
-             android:layout_marginRight="10dp"
-             app:tint="@color/blue"
-             android:src="@drawable/ic_baseline_arrow_forward_24"
-             />
+            <ImageView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_baseline_arrow_forward_24"
+                app:tint="@color/blue" />
 
         </RelativeLayout>
 

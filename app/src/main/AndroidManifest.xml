@@ -17,6 +17,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UmakLibraryApp"
         tools:targetApi="31">
+
+        <activity
+            android:name=".Shelves"
+            android:exported="false" />
+
+        <activity
+            android:name=".History"
+            android:exported="false" />
+        <activity
+            android:name=".Favorites"
+            android:exported="false" />
+        <activity
+            android:name=".YouMighLikeExpand"
+            android:exported="false" />
         <activity
             android:name=".ActivityLogs"
             android:exported="false" />

@@ -47,6 +47,7 @@
 
 
             <ImageButton
+                android:id="@+id/img_btn_saved"
                 android:layout_marginStart="-45dp"
                 android:layout_width="45dp"
                 android:layout_height="47dp"
@@ -174,7 +175,7 @@
                                 android:id="@+id/txt_rating"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="4.8(299)"
+                                android:text="0(0)"
                                 android:textColor="@color/textprimary"
                                 android:textSize="15sp"
                                 android:fontFamily="@font/arial"

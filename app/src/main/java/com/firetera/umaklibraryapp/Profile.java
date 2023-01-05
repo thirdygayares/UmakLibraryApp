@@ -32,12 +32,15 @@ public class Profile extends Fragment {
 
     ImageView profile_image;
     TextView txt_fullname,txt_college_section,txt_email,txt_count_read,txt_count_logs;
-    LinearLayout btn_book_read,btn_library_logs, btn_information,btn_developer,btn_suggestion,btn_like,btn_help,btn_logout;
+    LinearLayout btn_favorites,btn_history,btn_leaderboards, btn_book_read,btn_library_logs, btn_information,btn_developer,btn_suggestion,btn_like,btn_help,btn_logout;
+
 
     ProgressDialog progressDialog;
 
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firestore;
+
+
 
     //Databasehelper
     DatabaseHelper databaseHelper;
@@ -64,6 +67,12 @@ public class Profile extends Fragment {
         //manipylate profile image, fullname, college, section and email
         detailsMethod();
 
+        //clicking favorites
+        favoritesMethod();
+
+        //clciking History
+        historyMethod();
+
         //clicking counting read and logs
         countingMethod();
 
@@ -72,8 +81,30 @@ public class Profile extends Fragment {
 
         logoutMehod();
 
+
+
         return view;
 
+    }
+
+    private void historyMethod(){
+        btn_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), History.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void favoritesMethod() {
+        btn_favorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Favorites.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void processDialogMethod() {
@@ -155,6 +186,8 @@ public class Profile extends Fragment {
         btn_like = view.findViewById(R.id.btn_like);
         btn_help = view.findViewById(R.id.btn_help);
         btn_logout = view.findViewById(R.id.btn_logout);
+        btn_history  = view.findViewById(R.id.btn_history);
+        btn_favorites = view.findViewById(R.id.btn_favorites);
 
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.firetera.umaklibraryapp.Model.AddFavoritesModel;
+import com.firetera.umaklibraryapp.Model.AddShelvesModel;
 import com.firetera.umaklibraryapp.extension.MyCollege;
 import com.firetera.umaklibraryapp.extension.MyCourse;
 import com.firetera.umaklibraryapp.extension.MyEmail;
@@ -39,6 +42,7 @@ public class BookDetails extends AppCompatActivity {
     TextView txt_bookTitle, txt_author, txt_rating, txt_read, txt_fav, txt_loc, txt_publisher, txt_publishedDate, txt_description,txt_available;
     Button btn_addbooks,btn_borrow,btn_addtoshelves;
     ImageView imageses;
+    ImageButton img_btn_saved;
 
     //initiate firebase
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
@@ -73,6 +77,58 @@ public class BookDetails extends AppCompatActivity {
         //borrow book
         borrowButonMethod();
 
+        //add to shelves click
+        addToShelves();
+
+        //save click
+        saveMethod();
+
+    }
+
+    private void addToShelves() {
+        btn_addtoshelves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                AddShelvesModel addShelvesModel = new AddShelvesModel(firebaseAuth.getUid(), homepage.ID, homepage.BookImage, txt_bookTitle.getText().toString(), txt_author.getText().toString());
+
+                firestore.collection("SHELVES").add(addShelvesModel).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Toast.makeText(BookDetails.this, "Add To Shelves Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(BookDetails.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+    }
+
+    private void saveMethod() {
+        img_btn_saved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                AddFavoritesModel addFavoritesModel = new AddFavoritesModel(firebaseAuth.getUid(), homepage.ID, homepage.BookImage, txt_bookTitle.getText().toString(), txt_author.getText().toString());
+
+                firestore.collection("FAVORITES").add(addFavoritesModel).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Toast.makeText(BookDetails.this, "Add To Favorites", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(BookDetails.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
 
     private void initPersona() {
@@ -184,6 +240,7 @@ public class BookDetails extends AppCompatActivity {
         txt_available  = findViewById(R.id.txt_available);
         btn_borrow  = findViewById(R.id.btn_borrow);
         btn_addtoshelves  = findViewById(R.id.btn_addtoshelves);
+        img_btn_saved = findViewById(R.id.img_btn_saved);
     }
 
 }

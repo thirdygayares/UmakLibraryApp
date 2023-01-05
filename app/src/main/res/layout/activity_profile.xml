@@ -172,7 +172,111 @@
             android:orientation="vertical"
             >
 
-<!--            change passowrd-->
+
+            <!-- History -->
+
+            <LinearLayout
+                android:id="@+id/btn_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="History"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_history_24"
+                    app:tint="@color/blue"
+                    />
+
+
+            </LinearLayout>
+
+
+            <!-- Favorites -->
+
+            <LinearLayout
+                android:id="@+id/btn_favorites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Favorites"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_bookmark_24"
+                    app:tint="@color/blue"
+                    />
+
+
+
+            </LinearLayout>
+
+            <!-- Leaderboard -->
+
+            <LinearLayout
+                android:id="@+id/btn_leaderboards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Leaderboard"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_bar_chart_24"
+                    app:tint="@color/blue"
+                    />
+
+
+
+            </LinearLayout>
+
+
+            <!--            change passowrd-->
 
             <LinearLayout
                 android:id="@+id/btn_change_password"
