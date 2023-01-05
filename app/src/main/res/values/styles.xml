@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/text_input_box_stroke</item>
+    </style>
+
+    <style name="imageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">51%</item>
+    </style>
+
+    <style name="imageViewRounded20">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20%</item>
+    </style>
+
+    <style name="imageViewRounded5">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12%</item>
+    </style>
+
+
+        <style name="imageViewRounded10">
+            <item name="cornerFamily">rounded</item>
+            <item name="cornerSize">10%</item>
+        </style>
+
+        <style name="BottomNavigationView.style" parent="@style/TextAppearance.AppCompat.Caption">
+            <item name="android:textSize">15sp</item>
+        </style>
+
+
+
+</resources>

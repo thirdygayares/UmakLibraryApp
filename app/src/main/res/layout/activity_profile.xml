@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Profile">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="10dp"
+        android:background="@color/blue">
+
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:background="@color/white"
+            android:maxWidth="50dp"
+            android:maxHeight="50dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/avatar1"
+            app:shapeAppearance="?attr/actionButtonStyle"
+            app:shapeAppearanceOverlay="@style/imageViewRounded"
+            app:strokeColor="@android:color/white"></com.google.android.material.imageview.ShapeableImageView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            >
+            <TextView
+                android:id="@+id/txt_fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Full Name"
+                android:textColor="@color/white"
+                android:fontFamily="@font/arialmedium"
+                android:textSize="25sp"
+                />
+            <TextView
+                android:id="@+id/txt_college_section"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="College and Section"
+                android:textColor="@color/white"
+                android:fontFamily="@font/arial"
+                android:textSize="20sp"
+                />
+            <TextView
+                android:id="@+id/txt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="email@umak.edu.ph"
+                android:textColor="@color/white"
+                android:fontFamily="@font/arial"
+                android:textSize="12sp"
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+
+<!--    Count of Library Logs and Book Read-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        >
+<!--        Library Logs-->
+        <LinearLayout
+            android:paddingVertical="10dp"
+            android:id="@+id/btn_library_logs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:id="@+id/txt_count_logs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:fontFamily="@font/arialmedium"
+                android:textSize="30sp"
+                android:textColor="@color/text_secondary"
+                android:textAlignment="center"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Library Logs"
+                android:fontFamily="@font/arial"
+                android:textSize="15sp"
+                android:textColor="@color/text_primary"
+                android:textAlignment="center"
+                />
+        </LinearLayout>
+
+<!--        Book Read-->
+        <LinearLayout
+            android:id="@+id/btn_book_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:id="@+id/txt_count_read"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:fontFamily="@font/arialmedium"
+                android:textSize="30sp"
+                android:textColor="@color/text_secondary"
+                android:textAlignment="center"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Book Read"
+                android:fontFamily="@font/arial"
+                android:textSize="15sp"
+                android:textColor="@color/text_primary"
+                android:textAlignment="center"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+<!--            menu tools-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+
+            <!-- History -->
+
+            <LinearLayout
+                android:id="@+id/btn_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="History"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_history_24"
+                    app:tint="@color/blue"
+                    />
+
+
+            </LinearLayout>
+
+
+            <!-- Favorites -->
+
+            <LinearLayout
+                android:id="@+id/btn_favorites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Favorites"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_bookmark_24"
+                    app:tint="@color/blue"
+                    />
+
+
+
+            </LinearLayout>
+
+            <!-- Leaderboard -->
+
+            <LinearLayout
+                android:id="@+id/btn_leaderboards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Leaderboard"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_bar_chart_24"
+                    app:tint="@color/blue"
+                    />
+
+
+
+            </LinearLayout>
+
+
+            <!--            change passowrd-->
+
+            <LinearLayout
+                android:id="@+id/btn_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Change Password"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_lock_24"
+                    app:tint="@color/blue"
+                    />
+
+
+            </LinearLayout>
+
+<!--            infromation-->
+            <LinearLayout
+                android:id="@+id/btn_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Information"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_info_24"
+                    app:tint="@color/blue"
+                    />
+
+
+            </LinearLayout>
+
+            <!-- developer-->
+            <LinearLayout
+                android:id="@+id/btn_developer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Developer"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_groups_24"
+                    app:tint="@color/blue"
+                    />
+
+
+            </LinearLayout>
+
+            <!-- Suggestion-->
+            <LinearLayout
+                android:id="@+id/btn_suggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Suggestion"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_comment_bank_24"
+                    app:tint="@color/blue"
+                    />
+
+
+            </LinearLayout>
+
+            <!-- Like us on Facebook-->
+            <LinearLayout
+                android:id="@+id/btn_like"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Like us on Facebook"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_recommend_24"
+                    app:tint="@color/blue"
+                    />
+
+
+            </LinearLayout>
+
+            <!-- Help-->
+            <LinearLayout
+                android:id="@+id/btn_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Help"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_help_24"
+                    app:tint="@color/blue"
+                    />
+
+
+            </LinearLayout>
+
+            <!-- Logout-->
+            <LinearLayout
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:padding="10dp"
+                android:layout_marginTop="2dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:textColor="@color/text_secondary"
+                    android:fontFamily="@font/arial"
+                    android:layout_marginRight="30dp"
+                    android:textSize="18sp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-28dp"
+                    android:src="@drawable/ic_baseline_logout_24"
+                    app:tint="@color/blue"
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

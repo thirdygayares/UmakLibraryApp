@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "647090494095",
+    "project_id": "umak-library-app",
+    "storage_bucket": "umak-library-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:647090494095:android:9a23d6ce30608d92c72efa",
+        "android_client_info": {
+          "package_name": "com.firetera.umaklibraryapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "647090494095-1u8ff6m9mv719crh2r8is7b22j6r4tq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsEU3_RR-oz-OfgFGH_lPD3tO5ftEG1b8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "647090494095-1u8ff6m9mv719crh2r8is7b22j6r4tq1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

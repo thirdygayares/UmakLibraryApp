@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple">#819BF8</color>
+    <color name="purple_200">#FF6200EE</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
@@ -9,5 +10,16 @@
     <color name="white">#FFFFFFFF</color>
     <color name="background">#FAFAFA</color>
     <color name="outline">#979691</color>
+    <color name="blue">#819BF8</color>
+    <color name="text_primary">#7B6868</color>
+    <color name="text_secondary">#383733</color>
+    <color name="textprimary">#565761</color>
+    <color name="texthighlight">#6D6D6D</color>
+    <color name="texthighlight2">#D7C8C8</color>
+    <color name="danger">#FC1B44</color>
+    <color name="shining">#B3B3B3</color>
+    <color name="done">#EAEEFF</color>
+    <color name="green">#83EC5E</color>
+    <color name="secondary">#5175F5</color>
 
 </resources>

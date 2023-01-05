@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Favorites">
+
+
+    <LinearLayout
+        android:id="@+id/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arialsemibold"
+                android:text="Favorites"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/ic_baseline_search_24"
+                app:tint="@color/blue"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/section_content"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="60dp"
+            >
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_books"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_height="match_parent"
+                    />
+
+                <TextView
+                    android:id="@+id/btn_loadmore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Load More"
+                    android:fontFamily="@font/arialsemibold"
+                    android:textColor="@color/secondary"
+                    android:layout_marginBottom="10dp"
+                    />
+                <ProgressBar
+                    android:visibility="gone"
+                    android:id="@+id/progressbar_cursor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    />
+
+
+
+            </LinearLayout>
+
+            <!--below is the view for our shimmer-->
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+
+            android:id="@+id/shimmerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:animationCache="true"
+            app:shimmer_repeat_mode="restart"
+            app:shimmer_shape="radial">
+
+            <!--For shimmer we are creating a same layout
+                but setting its background as a gray colour and
+                not providing any view inside it-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    tools:ignore="NotSibling">
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="80dp"
+                        android:layout_height="110dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="@color/shining"
+                        android:maxWidth="50dp"
+                        android:maxHeight="50dp"
+                        android:layout_margin="10dp"
+                        android:scaleType="fitXY"
+                        app:shapeAppearance="?attr/actionButtonStyle"
+                        app:shapeAppearanceOverlay="@style/imageViewRounded10"
+                        app:strokeColor="@android:color/white"></com.google.android.material.imageview.ShapeableImageView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:paddingVertical="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="40dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:background="@color/shining"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/shining"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/arial"
+                            android:textSize="12sp"
+                            />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="NotSibling">
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="80dp"
+                        android:layout_height="110dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="@color/shining"
+                        android:maxWidth="50dp"
+                        android:maxHeight="50dp"
+                        android:layout_margin="10dp"
+                        android:scaleType="fitXY"
+                        app:shapeAppearance="?attr/actionButtonStyle"
+                        app:shapeAppearanceOverlay="@style/imageViewRounded10"
+                        app:strokeColor="@android:color/white"></com.google.android.material.imageview.ShapeableImageView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:paddingVertical="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="40dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:background="@color/shining"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/shining"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/arial"
+                            android:textSize="12sp"
+                            />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="NotSibling">
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="80dp"
+                        android:layout_height="110dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="@color/shining"
+                        android:maxWidth="50dp"
+                        android:maxHeight="50dp"
+                        android:layout_margin="10dp"
+                        android:scaleType="fitXY"
+                        app:shapeAppearance="?attr/actionButtonStyle"
+                        app:shapeAppearanceOverlay="@style/imageViewRounded10"
+                        app:strokeColor="@android:color/white"></com.google.android.material.imageview.ShapeableImageView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:paddingVertical="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="40dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:background="@color/shining"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/shining"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/arial"
+                            android:textSize="12sp"
+                            />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="NotSibling">
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="80dp"
+                        android:layout_height="110dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="@color/shining"
+                        android:maxWidth="50dp"
+                        android:maxHeight="50dp"
+                        android:layout_margin="10dp"
+                        android:scaleType="fitXY"
+                        app:shapeAppearance="?attr/actionButtonStyle"
+                        app:shapeAppearanceOverlay="@style/imageViewRounded10"
+                        app:strokeColor="@android:color/white"></com.google.android.material.imageview.ShapeableImageView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:paddingVertical="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="40dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:background="@color/shining"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/shining"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/arial"
+                            android:textSize="12sp"
+                            />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="NotSibling">
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="80dp"
+                        android:layout_height="110dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="@color/shining"
+                        android:maxWidth="50dp"
+                        android:maxHeight="50dp"
+                        android:layout_margin="10dp"
+                        android:scaleType="fitXY"
+                        app:shapeAppearance="?attr/actionButtonStyle"
+                        app:shapeAppearanceOverlay="@style/imageViewRounded10"
+                        app:strokeColor="@android:color/white"></com.google.android.material.imageview.ShapeableImageView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:paddingVertical="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="40dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:background="@color/shining"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/shining"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/arial"
+                            android:textSize="12sp"
+                            />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="NotSibling">
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="80dp"
+                        android:layout_height="110dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="@color/shining"
+                        android:maxWidth="50dp"
+                        android:maxHeight="50dp"
+                        android:layout_margin="10dp"
+                        android:scaleType="fitXY"
+                        app:shapeAppearance="?attr/actionButtonStyle"
+                        app:shapeAppearanceOverlay="@style/imageViewRounded10"
+                        app:strokeColor="@android:color/white"></com.google.android.material.imageview.ShapeableImageView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:paddingVertical="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="40dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:background="@color/shining"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/shining"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/arial"
+                            android:textSize="12sp"
+                            />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    tools:ignore="NotSibling">
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="80dp"
+                        android:layout_height="110dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="@color/shining"
+                        android:maxWidth="50dp"
+                        android:maxHeight="50dp"
+                        android:layout_margin="10dp"
+                        android:scaleType="fitXY"
+                        app:shapeAppearance="?attr/actionButtonStyle"
+                        app:shapeAppearanceOverlay="@style/imageViewRounded10"
+                        app:strokeColor="@android:color/white"></com.google.android.material.imageview.ShapeableImageView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:paddingVertical="10dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="20dp"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginRight="40dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:background="@color/shining"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/shining"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/arial"
+                            android:textSize="12sp"
+                            />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        />
+
+
+
+</RelativeLayout>

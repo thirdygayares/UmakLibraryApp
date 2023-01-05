@@ -1,15 +1,22 @@
 <resources>
-    <string name="app_name">UmakLibraryApp</string>
-    <string name="login">Login</string>
-    <string name="bookdetails">Book Details</string>
+    <string name="app_name">Herons Library</string>
+    <string name="title_activity_homepage">Homepage</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 
-    <string-array name="history_array">
-        <item>Noli Me Tangere </item>
-        <item>Noli Me Tangere </item>
-        <item>Noli Me Tangere </item>
-        <item>Noli Me Tangere </item>
-        <item>Noli Me Tangere </item>
-        <item>Noli Me Tangere </item>
-    </string-array>
+    <!--    <string name="login">Login</string>-->
+    <!--    <string name="bookdetails">Book Details</string>-->
+
+    <!--    <string-array name="history_array">-->
+    <!--        <item>Noli Me Tangere </item>-->
+    <!--        <item>Noli Me Tangere </item>-->
+    <!--        <item>Noli Me Tangere </item>-->
+    <!--        <item>Noli Me Tangere </item>-->
+    <!--        <item>Noli Me Tangere </item>-->
+    <!--        <item>Noli Me Tangere </item>-->
+    <!--    </string-array>-->
 
 </resources>
